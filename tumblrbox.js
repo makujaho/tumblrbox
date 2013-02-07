@@ -3,8 +3,9 @@
  * using FancyBox
  *
  * Copyright (c) 2011 Picuous
+ * Copyright (c) 2013 makujaho 
  *
- * Version: alpha
+ * Version: alpha (goodified => without tracking and shit)
  *
  * Licensed under the MIT license
  *   http://www.opensource.org/licenses/mit-license.php
@@ -21,10 +22,6 @@
     }
   }
   console.debug('tumblrbox');
-  
-  // Track - http://remysharp.com/2009/02/27/analytics-for-bookmarklets-injected-scripts/
-  function gaTrack(g,h,i){function c(e,j){return e+Math.floor(Math.random()*(j-e))}var f=1000000000,k=c(f,9999999999),a=c(10000000,99999999),l=c(f,2147483647),b=(new Date()).getTime(),d=window.location,m=new Image(),n='http://www.google-analytics.com/__utm.gif?utmwv=1.3&utmn='+k+'&utmsr=-&utmsc=-&utmul=-&utmje=0&utmfl=-&utmdt=-&utmhn='+h+'&utmr='+d+'&utmp='+i+'&utmac='+g+'&utmcc=__utma%3D'+a+'.'+l+'.'+b+'.'+b+'.'+b+'.2%3B%2B__utmb%3D'+a+'%3B%2B__utmc%3D'+a+'%3B%2B__utmz%3D'+a+'.'+b+'.2.2.utmccn%3D(referral)%7Cutmcsr%3D'+d.host+'%7Cutmcct%3D'+d.pathname+'%7Cutmcmd%3Dreferral%3B%2B__utmv%3D'+a+'.-%3B';m.src=n}
-  gaTrack('UA-25843105-2', 'picuous.github.com', '/tumblrbox/tumblrbox.js');
   
   // Global variables
   var otherlib = false;
@@ -83,15 +80,7 @@
           'overlayOpacity':	0.95,
           'overlayColor': '#111',
           'showCloseButton': false,
-          'hideOnContentClick': true,
-          'onComplete': function() {
-            $('#fancybox-title').after('<a id="powered_by_tumblrbox" href="http://picuous.github.com/tumblrbox" target="_blank"><img src="http://picuous.github.com/tumblrbox/css/img/powered_by.png" alt="powered by Tumblrbox" /></a>');
-            setTimeout(function() { $('#powered_by_tumblrbox').fadeIn() }, 500);
-          },
-          'onCleanup': function() {
-            $('#powered_by_tumblrbox').fadeOut(100, function() {
-              $(this).remove();
-            });
+          'hideOnContentClick': true
           }
         });
         console.debug($tumblr_pics.length+' tumblr pictures tumblrboxed');
@@ -101,18 +90,6 @@
           (new Image()).src = $(this).attr('href');
         });
         
-        // Flickr doesn't allow displaying its content as in an iframe
-        /*var $flickr_pics = $('a[href*="http://www.flickr.com/photos"]>img[src*="media.tumblr.com"]').parent();
-        $flickr_pics.fancybox({
-          'type': 'iframe',
-          'transitionIn': 'elastic',
-          'transitionOut': 'elastic',
-          'opacity': true,
-          'titleShow': false,
-          'padding': 0,
-          'overlayShow': true
-        });
-        console.debug($flickr_pics.length+' flickr pictures tumblrboxed');*/
       });
     }
   });
