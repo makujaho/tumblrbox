@@ -1,11 +1,11 @@
 /*
- * tumblrbox - Lightbox effect for Tumblr
+ * tumblrboxv2 - Lightbox effect for Tumblr
  * using FancyBox
  *
  * Copyright (c) 2011 Picuous
  * Copyright (c) 2013 makujaho 
  *
- * Version: alpha (goodified => without tracking and shit)
+ * Version: alpha (goodified => without tracking)
  *
  * Licensed under the MIT license
  *   http://www.opensource.org/licenses/mit-license.php
@@ -34,17 +34,19 @@
   }
   
   // more or less stolen form jquery core and adapted by paul irish
+  // shameless stolen again and chained to a fancyBox commit blob
   function load_file(url, success) {
     var script;
+    var blob = 'https://github.com/fancyapps/fancyBox/blob/6208e1213bec87cdb6b13b134a3fd3d425802c24/';
     if(url.match(/\.js$/)) {
       script = document.createElement('script');
-      script.src = url;
+      script.src = blob+url;
       script.type = 'text/javascript';
     } else {
       script = document.createElement('link');
       script.rel = 'stylesheet';
       script.type = 'text/css';
-      script.href = url;
+      script.href = blob+url;
     }
     var head = document.getElementsByTagName('head')[0],
         done = false;
@@ -61,13 +63,13 @@
     };
     head.appendChild(script);
   }
-  load_file('http://ajax.googleapis.com/ajax/libs/jquery/1.6.1/jquery.min.js', function() {
+  load_file('lib/jquery-1.9.0.min.js', function() {
     if(typeof jQuery=='undefined') {
       console.debug('Sorry, but jQuery wasn\'t able to load');
     } else {
       $ = jQuery.noConflict();
       console.debug('loaded '+$.fn.jquery);
-      load_file('http://picuous.github.com/tumblrbox/lib/jquery.fancybox.min.js', function() {
+      load_file('source/jquery.fancybox.pack.js', function() {
         console.debug('loaded fancybox');
         
         var $tumblr_pics = $('a[href*=".media.tumblr.com/tumblr"]>img[src*=".media.tumblr.com/tumblr"]').parent();
@@ -95,6 +97,6 @@
   });
   
   // Add CSS
-  load_file('http://picuous.github.com/tumblrbox/lib/jquery.fancybox.css');
+  load_file('source/jquery.fancybox.css');
   
 })();
