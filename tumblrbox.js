@@ -72,7 +72,7 @@
       load_file('source/jquery.fancybox.pack.js', function() {
         console.debug('loaded fancybox');
         
-        var $tumblr_pics = $('a[href*=".media.tumblr.com"]>img[src*=".media.tumblr.com"]').parent();
+        var $tumblr_pics = $('a[href*=".media.tumblr.com"].hi-res, a>img[src*=".media.tumblr.com"]').parent();
         $tumblr_pics.fancybox({
           'type': 'image',
           'transitionIn': 'elastic',
