@@ -83,7 +83,6 @@
           'overlayColor': '#111',
           'showCloseButton': false,
           'hideOnContentClick': true
-          }
         });
         console.debug($tumblr_pics.length+' tumblr pictures tumblrboxed');
         
