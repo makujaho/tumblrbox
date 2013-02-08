@@ -37,7 +37,7 @@
   // shameless stolen again and chained to a fancyBox commit blob
   function load_file(url, success) {
     var script;
-    var blob = 'https://raw.github.com/fancyapps/fancyBox/blob/6208e1213bec87cdb6b13b134a3fd3d425802c24/';
+    var blob = 'https://raw.github.com/fancyapps/fancyBox/6208e1213bec87cdb6b13b134a3fd3d425802c24/';
     if(url.match(/\.js$/)) {
       script = document.createElement('script');
       script.src = blob+url;
