@@ -19,7 +19,8 @@ If your not comfortable with HTML you can follow these steps to enable tumblrbox
 * Click on the customize button for your template
 * Paste the following text at the end of your blog description:
 
-  ```html<script type='text/javascript'>
+  ```html
+  <script type='text/javascript'>
   document.write(unescape("%3Cscript src='http://makujaho.github.com/tumblrbox/tumblrbox.js' type='text/javascript'%3E%3C/script%3E"));
   </script>
   ```
