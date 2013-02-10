@@ -30,6 +30,7 @@ If your not comfortable with HTML you can follow these steps to enable tumblrbox
 If you are okay with editing the HTML of your template, you can add the following script tag to the end of your (Tumblr) theme:
 
   ```html
+  <-- load tumblrbox -->
   <script src="http://makujaho.github.com/tumblrbox/tumblrbox.js" type="text/javascript"></script>
   ```
 
