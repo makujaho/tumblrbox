@@ -12,16 +12,7 @@
  */
 
 ;(function() {
-  
-  if(typeof(window.console) === "undefined" || typeof(window.console.log) === "undefined") {
-    window.console = {
-      debug: function() {},
-      log: function() {},
-      warn: function() {},
-      error: function() {}
-    }
-  }
-  console.debug('tumblrbox');
+  console.log('tumblrbox start');
   
   // Global variables
   var otherlib = false;
@@ -37,7 +28,7 @@
   // shameless stolen again and chained to a fancyBox commit blob
   function load_file(url, success) {
     var script;
-    var blob = 'https://raw.github.com/fancyapps/fancyBox/6208e1213bec87cdb6b13b134a3fd3d425802c24/';
+    var blob = 'http://makujaho.github.com/tumblrbox/';
     if(url.match(/\.js$/)) {
       script = document.createElement('script');
       script.src = blob+url;
@@ -63,39 +54,43 @@
     };
     head.appendChild(script);
   }
-  load_file('lib/jquery-1.9.0.min.js', function() {
+  load_file('jquery-1.9.0.min.js', function() {
     if(typeof jQuery=='undefined') {
-      console.debug('Sorry, but jQuery wasn\'t able to load');
+      console.log('Sorry, but jQuery wasn\'t able to load');
     } else {
       $ = jQuery.noConflict();
-      console.debug('loaded '+$.fn.jquery);
-      load_file('source/jquery.fancybox.pack.js', function() {
-        console.debug('loaded fancybox');
-        
-        var $tumblr_pics = $('a[href*=".media.tumblr.com"].hi-res, a>img[src*=".media.tumblr.com"]').parent();
-        $tumblr_pics.fancybox({
-          'type': 'image',
-          'transitionIn': 'elastic',
-          'transitionOut': 'elastic',
-          'opacity': true,
-          'padding': 0,
-          'overlayOpacity':	0.95,
-          'overlayColor': '#111',
-          'showCloseButton': false,
-          'hideOnContentClick': true
-        });
-        console.debug($tumblr_pics.length+' tumblr pictures tumblrboxed');
-        
-        // Make it more responsive over click intents
-        $tumblr_pics.hover(function() {
-          (new Image()).src = $(this).attr('href');
+      console.log('loaded '+$.fn.jquery);
+      // Add CSS
+      load_file('jquery.mousewheel-3.0.6.pack.js', function(){
+        console.log('Loaded MouseWheel')
+        load_file('jquery.fancybox.css', function() {
+          console.log('Added FancyBox CSS');
         });
         
+        load_file('jquery.fancybox.pack.js', function() {
+          console.log('loaded fancybox');
+          var options = {
+            mouseWheel: false,
+            autoCenter: true,
+            closeClick: true,
+            fitToView:  true,
+            autoSize:   true,
+            padding :   20,
+            helpers:  {
+              title:  null,
+              css : {
+                'background' : 'rgba(58, 42, 45, 0.95)'
+              }
+            },
+          };
+
+          var $tb_hires  = $('a[href*=".media.tumblr.com"].hi-res');
+        
+          $tb_hires.fancybox(options).attr('data-fancybox-group', 'hires');
+
+          console.log(($tb_images.length + $tb_hires.length) + ' tumblr pictures tumblrboxed');
+        });
       });
     }
   });
-  
-  // Add CSS
-  load_file('source/jquery.fancybox.css');
-  
 })();
